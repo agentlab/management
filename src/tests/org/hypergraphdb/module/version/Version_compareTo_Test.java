@@ -1,4 +1,4 @@
-package org.hypergraphdb.app.management;
+package org.hypergraphdb.module.version;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.hamcrest.Matcher;
+import org.hypergraphdb.module.version.Version;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -20,7 +21,7 @@ import org.junit.runners.Parameterized.Parameters;
  * @author Dmitriy Shishkin
  */
 @RunWith(Parameterized.class)
-public class VersionCompareTest {
+public class Version_compareTo_Test {
 
 	private final static Matcher<Integer> EQ = equalTo(0);
 	private final static Matcher<Integer> LT = lessThan(0);

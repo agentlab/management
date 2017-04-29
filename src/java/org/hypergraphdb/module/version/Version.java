@@ -1,8 +1,9 @@
-package org.hypergraphdb.app.management;
+package org.hypergraphdb.module.version;
 
 import java.util.Comparator;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Value;
 import net.greypanther.natsort.SimpleNaturalComparator;
 
@@ -12,7 +13,11 @@ import net.greypanther.natsort.SimpleNaturalComparator;
  */
 @Value
 @Builder
-public class Version implements Comparable<Version> {
+@EqualsAndHashCode(exclude = "metadata")
+public final class Version implements Comparable<Version> {
+
+	public final static Version ZERO = new Version(0, 0, 0, null, null);
+	public final static Version ONE  = new Version(1, 0, 0, null, null);
 
 	private static final String MAIN_SEPARATOR = ".";
 	private static final String PRERELEASE_SEPARATOR = "-";

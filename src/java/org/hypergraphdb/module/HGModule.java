@@ -1,9 +1,11 @@
-package org.hypergraphdb.app.management;
+package org.hypergraphdb.module;
 
 import java.net.URI;
 import java.util.List;
 
 import org.hypergraphdb.HyperGraph;
+import org.hypergraphdb.app.management.PresenceLifecycle;
+import org.hypergraphdb.module.version.Version;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,13 +26,13 @@ public abstract class HGModule implements PresenceLifecycle {
 	private Version version;
 	private List<HGModuleRef> dependencies;
 	private HGModuleState state;
-	
+
 	public void install(HyperGraph graph) {
 		state = HGModuleState.INSTALLED;
 	}
-	
-	public void resolve(HyperGraph graph){
-		
+
+	void resolve(HyperGraph graph) {
+
 	}
 
 }

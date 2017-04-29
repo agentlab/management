@@ -1,4 +1,4 @@
-package org.hypergraphdb.app.management;
+package org.hypergraphdb.module.version;
 
 /**
  * 

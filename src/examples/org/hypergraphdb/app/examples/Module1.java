@@ -1,7 +1,7 @@
 package org.hypergraphdb.app.examples;
 
 import org.hypergraphdb.HyperGraph;
-import org.hypergraphdb.app.management.HGModule;
+import org.hypergraphdb.module.HGModule;
 
 public class Module1 extends HGModule {
 

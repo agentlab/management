@@ -1,4 +1,4 @@
-package org.hypergraphdb.app.management;
+package org.hypergraphdb.module;
 
 /**
  * 
@@ -11,7 +11,7 @@ public enum HGModuleState {
 	RESOLVED,
 
 	ACTIVE,
-	
+
 	FAILURE
 
 }

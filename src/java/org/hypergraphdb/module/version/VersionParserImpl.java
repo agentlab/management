@@ -1,4 +1,4 @@
-package org.hypergraphdb.app.management;
+package org.hypergraphdb.module.version;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * 
  * @author Dmitriy Shishkin
  */
-public class VersionParser {
+public class VersionParserImpl implements VersionParser {
 
 	// @formatter:off
 	private static final Pattern PATTERN = Pattern.compile(

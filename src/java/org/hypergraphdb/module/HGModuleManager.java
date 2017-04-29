@@ -1,4 +1,4 @@
-package org.hypergraphdb.app.management;
+package org.hypergraphdb.module;
 
 import org.hypergraphdb.HyperGraph;
 import org.hypergraphdb.HGQuery.hg;
