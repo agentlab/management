@@ -1,76 +1,102 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <properties>
-    <packageit>bundle</packageit>
-    <bundle.symbolicName>${project.groupId}-${project.artifactId};singleton:=true</bundle.symbolicName>
-    <bundle.namespace>org.hypergraphdb.app.management</bundle.namespace>    
-  </properties>
-  <packaging>${packageit}</packaging>
-  <groupId>org.hypergraphdb</groupId>
-  <artifactId>hgdbmanagement</artifactId>  
-  <version>1.4-SNAPSHOT</version> 
-  <name>HyperGraphDB App Management</name>
+	<modelVersion>4.0.0</modelVersion>
+	<properties>
+		<packageit>bundle</packageit>
+		<bundle.symbolicName>${project.groupId}-${project.artifactId};singleton:=true</bundle.symbolicName>
+		<bundle.namespace>org.hypergraphdb.app.management</bundle.namespace>
+	</properties>
+	
+	<groupId>org.hypergraphdb</groupId>
+	<artifactId>hgdbmanagement</artifactId>
+	<packaging>bundle</packaging>
+	<version>1.4-SNAPSHOT</version>
+	
+	<name>HyperGraphDB App Management</name>
 
-  <distributionManagement>
-    <repository>
-      <id>hypergraphdb-repository</id>
-      <url>scp://hypergraphdb.org/var/www/hypergraphdb.org/maven</url>
-    </repository>
-  </distributionManagement>                                                                             
- <repositories>
-    <repository>
-      <id>hypergraphdb</id>
-      <url>http://hypergraphdb.org/maven</url>
-    </repository>
- </repositories>
- 
-  <dependencies>
-	<dependency>
-	  <groupId>org.hypergraphdb</groupId>
-	  <artifactId>hgdb</artifactId>
-	  <version>${project.version}</version>
-	</dependency>	
-  </dependencies>
-  <build>
-   <sourceDirectory>src/java</sourceDirectory>  
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-	    <artifactId>wagon-ssh</artifactId>
- 	    <version>2.10</version>
-      </extension>
-    </extensions>
-    
-   <plugins>
-     <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <archive>
-            <manifestFile>META-INF/MANIFEST.MF</manifestFile>
-          </archive>
-        </configuration>
-     </plugin>   
-    <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>1.4.0</version>
-        <extensions>true</extensions>
-        <configuration>
- 		  <manifestLocation>META-INF</manifestLocation>        
-          <instructions>
-            <Bundle-SymbolicName>${project.groupId}-${project.artifactId};singleton:=true</Bundle-SymbolicName>
-            <Bundle-Name>${project.name}</Bundle-Name>
-            <Bundle-Version>${project.version}</Bundle-Version>
-            <Export-Package>org.hypergraphdb.app.management.*</Export-Package>
-            <Import-Package>org.hypergraphdb.*</Import-Package>
-          </instructions>
-        </configuration>
-    </plugin>     
-    </plugins>
-  </build>  
+	<distributionManagement>
+		<repository>
+			<id>hypergraphdb-repository</id>
+			<url>scp://hypergraphdb.org/var/www/hypergraphdb.org/maven</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>hypergraphdb</id>
+			<url>http://hypergraphdb.org/maven</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.hypergraphdb</groupId>
+			<artifactId>hgdb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.grey-panther</groupId>
+			<artifactId>natural-comparator</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.16</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<sourceDirectory>src/java</sourceDirectory>
+		<testSourceDirectory>src/tests</testSourceDirectory>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.10</version>
+			</extension>
+		</extensions>
+
+		<plugins>
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-jar-plugin</artifactId> -->
+			<!-- <version>2.6</version> -->
+			<!-- <configuration> -->
+			<!-- <archive> -->
+			<!-- <manifestFile>META-INF/MANIFEST.MF</manifestFile> -->
+			<!-- </archive> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>1.4.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<!-- <manifestLocation>META-INF</manifestLocation> -->
+					<instructions>
+						<Bundle-SymbolicName>${project.groupId}-${project.artifactId};singleton:=true</Bundle-SymbolicName>
+						<Bundle-Name>${project.name}</Bundle-Name>
+						<Bundle-Version>${project.version}</Bundle-Version>
+						<Export-Package>org.hypergraphdb.app.management.*</Export-Package>
+						<!-- <Import-Package>org.hypergraphdb.*</Import-Package> -->
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

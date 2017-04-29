@@ -1,0 +1,50 @@
+# Dirs With Binaries #
+bin/
+libs/
+target/
+xtend-gen/
+src-gen/
+classes/
+temp
+
+Thumbs.db
+
+# Eclipse Project Files #
+.classpath
+.project
+build.properties
+.settings/
+
+# Idea Project Files #
+.idea/
+*.iml
+
+# Binary Files #
+*.class
+*.dll
+*.lib
+*.exe
+*.obj
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.rar
+*.7z
+*.tar
+
+# Temporary Files #
+*.bak
+
+# Data Files #
+*.dat
+*.idn
+
+# Agent Platform #
+APDescription.txt
+MTPs-Main-Container.txt
+
+# Maven pomless build generated files
+.polyglot.build.properties
