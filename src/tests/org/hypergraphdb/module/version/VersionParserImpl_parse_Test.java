@@ -25,7 +25,7 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class VersionParserImpl_parse_Test {
 
-	@Parameters(name = "{0}")
+	@Parameters(name = "{index}: Parse {0} is {1}")
 	public static Collection<Object[]> parameters() {
 		return Arrays.asList(new Object[][] {
 			// @formatter:off

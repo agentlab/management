@@ -19,7 +19,7 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class Version_toString_Test {
 
-	@Parameters(name = "{0} toString() is {1}")
+	@Parameters(name = "{index}: {0} toString() is {1}")
 	public static Collection<Object[]> parameters() {
 		return Arrays.asList(new Object[][] {
 			// @formatter:off

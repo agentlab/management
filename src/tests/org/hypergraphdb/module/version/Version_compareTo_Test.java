@@ -27,7 +27,7 @@ public class Version_compareTo_Test {
 	private final static Matcher<Integer> LT = lessThan(0);
 	private final static Matcher<Integer> GT = greaterThan(0);
 
-	@Parameters(name = "{0} compareTo {1} is {2}")
+	@Parameters(name = "{index}: {0} compareTo {1} is {2}")
 	public static Collection<Object[]> parameters() {
 		return Arrays.asList(new Object[][] {
 			// @formatter:off
