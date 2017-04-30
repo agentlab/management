@@ -11,6 +11,9 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class VersionRangeFactory {
 
+	public static VersionRange ALL = new VersionRangeAll();
+	public static VersionRange NONE = new VersionRangeNone();
+
 	public static VersionRange openOpen(Version lower, Version upper) {
 		if (lower == null) {
 			throw new NullPointerException(
@@ -22,7 +25,7 @@ public final class VersionRangeFactory {
 		}
 		int compare = lower.compareTo(upper);
 		if (compare == 0) {
-			return single(lower);
+			return none();
 		} else if (compare < 0) {
 			return new VersionRangeIntersection(
 					new VersionRangeGreaterThanOpen(lower),
@@ -64,7 +67,7 @@ public final class VersionRangeFactory {
 		}
 		int compare = lower.compareTo(upper);
 		if (compare == 0) {
-			return single(lower);
+			return none();
 		} else if (compare < 0) {
 			return new VersionRangeIntersection(
 					new VersionRangeGreaterThanOpen(lower),
@@ -85,7 +88,7 @@ public final class VersionRangeFactory {
 		}
 		int compare = lower.compareTo(upper);
 		if (compare == 0) {
-			return single(lower);
+			return none();
 		} else if (compare < 0) {
 			return new VersionRangeIntersection(
 					new VersionRangeGreaterThanClosed(lower),
@@ -106,9 +109,6 @@ public final class VersionRangeFactory {
 		if (bound == null) {
 			throw new NullPointerException("Bound is null, use explicit 'all' method");
 		}
-		if (bound.equals(Version.ZERO)) {
-			return all();
-		}
 		return new VersionRangeGreaterThanClosed(bound);
 	}
 
@@ -116,18 +116,12 @@ public final class VersionRangeFactory {
 		if (bound == null) {
 			throw new NullPointerException("Bound is null, use explicit 'all' method");
 		}
-		if (bound.equals(Version.ZERO)) {
-			return none();
-		}
 		return new VersionRangeLessThanOpen(bound);
 	}
 
 	public static VersionRange lessThanClosed(Version bound) {
 		if (bound == null) {
 			throw new NullPointerException("Bound is null, use explicit 'all' method");
-		}
-		if (bound.equals(Version.ZERO)) {
-			return single(Version.ZERO);
 		}
 		return new VersionRangeLessThanClosed(bound);
 	}
@@ -140,11 +134,11 @@ public final class VersionRangeFactory {
 	}
 
 	public static VersionRange all() {
-		return new VersionRangeAll();
+		return ALL;
 	}
 
 	public static VersionRange none() {
-		return new VersionRangeNone();
+		return NONE;
 	}
 
 }

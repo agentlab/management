@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.hypergraphdb.module.version.Version;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
@@ -13,6 +14,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
+@EqualsAndHashCode
 class VersionRangeSingle implements VersionRange {
 
 	protected Version version;
@@ -24,9 +26,9 @@ class VersionRangeSingle implements VersionRange {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(LOWER_CLOSED_BRACKET);
+		// builder.append(LOWER_CLOSED_BRACKET);
 		builder.append(version.toString());
-		builder.append(UPPER_CLOSED_BRACKET);
+		// builder.append(UPPER_CLOSED_BRACKET);
 		return builder.toString();
 	}
 

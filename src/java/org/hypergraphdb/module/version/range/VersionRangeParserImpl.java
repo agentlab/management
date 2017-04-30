@@ -24,12 +24,12 @@ public class VersionRangeParserImpl implements VersionRangeParser {
 			throw new VersionRangeParserException(
 					"Version range should contain exactly 2 version separated by comma");
 		}
-		VersionRangeGreaterThan lower = getLower(parts[0].trim());
-		VersionRangeLessThan upper = getUpper(parts[1].trim());
+		VersionRangeGreaterThan lower = parseLower(parts[0].trim());
+		VersionRangeLessThan upper = parseUpper(parts[1].trim());
 		return new VersionRangeIntersection(lower, upper);
 	}
 
-	private VersionRangeGreaterThan getLower(String input) {
+	private VersionRangeGreaterThan parseLower(String input) {
 		String versionString = input.substring(1).trim();
 		char first = input.charAt(0);
 		if (first == '(') {
@@ -42,7 +42,7 @@ public class VersionRangeParserImpl implements VersionRangeParser {
 		}
 	}
 
-	private VersionRangeLessThan getUpper(String input) {
+	private VersionRangeLessThan parseUpper(String input) {
 		int length = input.length();
 		String versionString = input.substring(0, length - 1).trim();
 		char last = input.charAt(length - 1);

@@ -13,7 +13,7 @@ public interface VersionRange {
 	public static final char UPPER_OPEN_BRACKET = ')';
 	public static final char UPPER_CLOSED_BRACKET = ']';
 	public static final char SEPARATOR = ',';
-	public static final char INFINITY = '_';
+	public static final String INFINITY = "";
 
 	boolean contains(Version version);
 

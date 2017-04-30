@@ -1,7 +1,5 @@
 package org.hypergraphdb.module;
 
-import java.net.URI;
-
 import org.hypergraphdb.module.version.range.VersionRange;
 
 import lombok.Value;
@@ -13,7 +11,22 @@ import lombok.Value;
 @Value
 public class HGModuleRef {
 
-	private URI name;
+	private String name;
 	private VersionRange version;
+
+	@Override
+	public String toString() {
+		return name + ":" + version.toString();
+	}
+
+	public HGModuleRef(String name, VersionRange version) {
+		this.name = name;
+		this.version = version;
+	}
+
+	public HGModuleRef(Class<? extends HGModule> type, VersionRange version) {
+		this.name = type.getName();
+		this.version = version;
+	}
 
 }

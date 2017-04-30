@@ -3,16 +3,16 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<properties>
-		<packageit>bundle</packageit>
-		<bundle.symbolicName>${project.groupId}-${project.artifactId};singleton:=true</bundle.symbolicName>
-		<bundle.namespace>org.hypergraphdb.app.management</bundle.namespace>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<groupId>org.hypergraphdb</groupId>
 	<artifactId>hgdbmanagement</artifactId>
 	<packaging>bundle</packaging>
 	<version>1.4-SNAPSHOT</version>
-	
+
 	<name>HyperGraphDB App Management</name>
 
 	<distributionManagement>
@@ -31,9 +31,29 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
 			<groupId>org.hypergraphdb</groupId>
 			<artifactId>hgdb</artifactId>
-			<version>${project.version}</version>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hypergraphdb</groupId>
+			<artifactId>hgbdbje</artifactId>
+			<version>1.3</version>
 		</dependency>
 		<dependency>
 			<groupId>net.grey-panther</groupId>
@@ -59,6 +79,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<sourceDirectory>src/java</sourceDirectory>
 		<testSourceDirectory>src/tests</testSourceDirectory>
@@ -71,29 +92,34 @@
 		</extensions>
 
 		<plugins>
-			<!-- <plugin> -->
-			<!-- <groupId>org.apache.maven.plugins</groupId> -->
-			<!-- <artifactId>maven-jar-plugin</artifactId> -->
-			<!-- <version>2.6</version> -->
-			<!-- <configuration> -->
-			<!-- <archive> -->
-			<!-- <manifestFile>META-INF/MANIFEST.MF</manifestFile> -->
-			<!-- </archive> -->
-			<!-- </configuration> -->
-			<!-- </plugin> -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/examples</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<version>1.4.0</version>
 				<extensions>true</extensions>
 				<configuration>
-					<!-- <manifestLocation>META-INF</manifestLocation> -->
 					<instructions>
-						<Bundle-SymbolicName>${project.groupId}-${project.artifactId};singleton:=true</Bundle-SymbolicName>
-						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Version>${project.version}</Bundle-Version>
 						<Export-Package>org.hypergraphdb.app.management.*</Export-Package>
-						<!-- <Import-Package>org.hypergraphdb.*</Import-Package> -->
 					</instructions>
 				</configuration>
 			</plugin>

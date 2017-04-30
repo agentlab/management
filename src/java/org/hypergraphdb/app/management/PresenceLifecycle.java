@@ -30,7 +30,7 @@ public interface PresenceLifecycle
 	 * 
 	 * @param graph
 	 */
-	void install(HyperGraph graph);
+	void activate(HyperGraph graph);
 	
 	/**
 	 * <p>

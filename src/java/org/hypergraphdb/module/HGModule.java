@@ -1,38 +1,56 @@
 package org.hypergraphdb.module;
 
-import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 
 import org.hypergraphdb.HyperGraph;
-import org.hypergraphdb.app.management.PresenceLifecycle;
 import org.hypergraphdb.module.version.Version;
+import org.hypergraphdb.module.version.range.VersionRangeFactory;
 
-import lombok.EqualsAndHashCode;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
 /**
  * 
  * @author Dmitriy Shishkin
  */
 @Getter
-@EqualsAndHashCode
-@ToString
 @NoArgsConstructor
-public abstract class HGModule implements PresenceLifecycle {
+public abstract class HGModule {
 
-	private URI uri;
+	public static final String NAME = "name";
+
 	private Version version;
-	private List<HGModuleRef> dependencies;
-	private HGModuleState state;
 
-	public void install(HyperGraph graph) {
-		state = HGModuleState.INSTALLED;
+	@Setter(value = AccessLevel.PACKAGE)
+	private HGModuleState state = HGModuleState.CREATED;
+
+	public abstract void activate(HyperGraph graph);
+
+	public abstract void modify(HyperGraph graph);
+
+	public abstract void deactivate(HyperGraph graph);
+
+	public final String getName() {
+		return this.getClass().getName();
 	}
 
-	void resolve(HyperGraph graph) {
+	public void setName(String name) {
+	}
 
+	public List<HGModuleRef> getDependencies() {
+		return Collections.emptyList();
+	}
+
+	@Override
+	public String toString() {
+		return getName() + ":" + getVersion().toString();
+	}
+
+	public final HGModuleRef getRef() {
+		return new HGModuleRef(getName(), VersionRangeFactory.single(version));
 	}
 
 }

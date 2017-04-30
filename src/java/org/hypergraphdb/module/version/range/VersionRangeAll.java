@@ -14,13 +14,14 @@ class VersionRangeAll implements VersionRange {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(LOWER_CLOSED_BRACKET);
-		builder.append(Version.ZERO.toString());
-		builder.append(SEPARATOR);
-		builder.append(INFINITY);
-		builder.append(UPPER_OPEN_BRACKET);
-		return builder.toString();
+		// StringBuilder builder = new StringBuilder();
+		// builder.append(LOWER_CLOSED_BRACKET);
+		// builder.append(INFINITY);
+		// builder.append(SEPARATOR);
+		// builder.append(INFINITY);
+		// builder.append(UPPER_OPEN_BRACKET);
+		// return builder.toString();
+		return "";
 	}
 
 }

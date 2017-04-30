@@ -32,7 +32,7 @@ public class HGManagement
 	{
 		if (!isInstalled(graph, app))
 		{
-			app.install(graph);
+			app.activate(graph);
 			try { graph.add(app); }
 			catch (Exception ex) { app.uninstall(graph); }
 		}
